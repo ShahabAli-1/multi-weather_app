@@ -44,7 +44,7 @@ const fetchWeather = (lat, lon, callback) => {
 
 // // Fetch data from open weather-- first get lat and lon for city requested by user.
 const getCoordinates = (city, callback) => {
-  const apiKey = "4ee5e701d87089c20a8bc8cb9965ff35";
+  const apiKey = "-";
   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
 
   http
