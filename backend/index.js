@@ -17,7 +17,7 @@ connection.connect((err) => {
 
 // Fetch data from open weather using lat and lon
 const fetchWeather = (lat, lon, callback) => {
-  const apiKey = "4ee5e701d87089c20a8bc8cb9965ff35"; // Replace with your OpenWeather API key
+  const apiKey = "-"; // Replace with your OpenWeather API key
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   https
@@ -45,7 +45,7 @@ const fetchWeather = (lat, lon, callback) => {
 
 // // Fetch data from open weather-- first get lat and lon for city requested by user.
 const getCoordinates = (city, callback) => {
-  const apiKey = "4ee5e701d87089c20a8bc8cb9965ff35";
+  const apiKey = "-";
   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
 
   http
