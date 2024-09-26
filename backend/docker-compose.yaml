@@ -1,3 +1,25 @@
+# version: "3.8"
+# services:
+#   mysql:
+#     image: mysql:latest
+#     container_name: mysql_container
+#     environment:
+#       MYSQL_ROOT_PASSWORD: rootpassword
+#       MYSQL_DATABASE: weather_db
+#       MYSQL_USER: user
+#       MYSQL_PASSWORD: password
+#     restart: always
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - ./mysql_data:/var/lib/mysql
+#     networks:
+#       - app-network
+
+# networks:
+#   app-network:
+#     driver: bridge
+
 version: "3.8"
 services:
   mysql:
@@ -8,11 +30,34 @@ services:
       MYSQL_DATABASE: weather_db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-    restart: always
     ports:
       - "3306:3306"
     volumes:
       - ./mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  backend:
+    build: .
+    container_name: backend_container
+    ports:
+      - "4000:4000"
+    environment:
+      MYSQL_HOST: mysql_container
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: weather_db
+      API_KEY: your_openweather_api_key
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ../frontend
+    container_name: frontend_container
+    ports:
+      - "80:80"
     networks:
       - app-network
 
